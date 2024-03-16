@@ -33,3 +33,4 @@ build/
 .vscode/
 
 /src/main/resources/application-local.properties
+/src/test/resources/application-local.properties

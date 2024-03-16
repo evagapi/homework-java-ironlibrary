@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.ironhack.ironlibrary.model;
 
 import jakarta.persistence.*;
@@ -15,11 +16,14 @@ public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String issueDate;
     private String returnDate;
+
     @OneToOne
     @JoinColumn(name = "issue_book")
     private Book issueBook;
+
     @OneToOne
     @JoinColumn(name = "issue_student")
     private Student issueStudent;

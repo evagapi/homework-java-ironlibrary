@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.ironhack.ironlibrary.service;
 
 import com.ironhack.ironlibrary.repository.AuthorRepository;
@@ -6,6 +7,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthorService {
-    @Autowired
-    private AuthorRepository authorRepository;
+    @Autowired private AuthorRepository authorRepository;
 }

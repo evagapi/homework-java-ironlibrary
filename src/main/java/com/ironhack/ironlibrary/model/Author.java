@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.ironhack.ironlibrary.model;
 
 import jakarta.persistence.*;
@@ -15,8 +16,10 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
     private String email;
+
     @OneToOne
     @JoinColumn(name = "author_book")
     private Book authorBook;

@@ -1,3 +1,4 @@
+/* (C)2024 */
 package com.ironhack.ironlibrary.model;
 
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String isbn;
     private String category;
     private int quantity;

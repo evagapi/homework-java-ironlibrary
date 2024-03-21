@@ -16,12 +16,13 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    private String title;
     private String isbn;
     private String category;
     private int quantity;
 
-    public Book(String isbn, String category, int quantity) {
+    public Book(String title, String isbn, String category, int quantity) {
+        this.title = title;
         this.isbn = isbn;
         this.category = category;
         this.quantity = quantity;

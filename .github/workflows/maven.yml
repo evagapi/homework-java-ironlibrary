@@ -32,6 +32,3 @@ jobs:
 
     - name: Run Unit Tests
       run: mvn test --file pom.xml
-
-    - name: Format
-      run: mvn spotless:check

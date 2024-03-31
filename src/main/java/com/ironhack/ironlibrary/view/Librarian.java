@@ -32,18 +32,18 @@ public class Librarian {
     }
 
     public void addABook() {
-        System.out.println("Enter isbn : ");
+        System.out.print("Enter isbn : ");
         Scanner scanner = new Scanner(System.in);
         String isbn = scanner.nextLine();
-        System.out.println("Enter title : ");
+        System.out.print("Enter title : ");
         String title = scanner.nextLine();
-        System.out.println("Enter category : ");
+        System.out.print("Enter category : ");
         String category = scanner.nextLine();
-        System.out.println("Enter Author name : ");
+        System.out.print("Enter Author name : ");
         String name = scanner.nextLine();
-        System.out.println("Enter Author mail : ");
+        System.out.print("Enter Author mail : ");
         String email = scanner.nextLine();
-        System.out.println("Enter number of books : ");
+        System.out.print("Enter number of books : ");
         int quantity = Integer.parseInt(scanner.nextLine());
 
         Book book = new Book(title, isbn, category, quantity);

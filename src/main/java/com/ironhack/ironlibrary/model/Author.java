@@ -23,4 +23,10 @@ public class Author {
     @OneToOne
     @JoinColumn(name = "author_book")
     private Book authorBook;
+
+    public Author(String name, String email, Book authorBook) {
+        this.name = name;
+        this.email = email;
+        this.authorBook = authorBook;
+    }
 }

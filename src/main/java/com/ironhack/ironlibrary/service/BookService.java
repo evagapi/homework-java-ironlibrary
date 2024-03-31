@@ -16,4 +16,9 @@ public class BookService {
         return bookRepository.findBookByTitle(title);
     }
 
+    public Optional<Book> searchBookByCategory(String category) {
+        return bookRepository.findBookByCategory(category);
+    }
+
+
 }

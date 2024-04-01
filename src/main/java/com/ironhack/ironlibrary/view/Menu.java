@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class Menu {
 
@@ -21,12 +23,13 @@ public class Menu {
     public Menu() {
     }
 
-    public void displayOptions(int options[], String items[]) {
+    public void displayOptions(ArrayList<MenuItem> items) {
         System.out.println("==============");
         System.out.println("M E N U");
         System.out.println("==============");
-       for (int i = 0; i < options.length; i++) {
-           System.out.printf("%d. %s\n", options[i], items[i]);
+       for (int i = 0; i < items.size(); i++) {
+           MenuItem item = items.get(i);
+           System.out.printf("%d. %s\n", i + 1, item.getText());
        }
         System.out.println("==============");
     }
@@ -34,44 +37,44 @@ public class Menu {
     public void menuRun() {
         int choice;
 
-        int options[] = {1, 2, 3, 4, 5, 6, 7, 8};
-        String menuItems[] = {"Add a book",
-                "Search book by title",
-                "Search book by category",
-                "Search book by Author",
-                "List all books along with author",
-                "Issue book to student",
-                "List books by usn",
-                "Exit"
-        };
-        int EXIT = options[options.length - 1];
-        String underConstruction = "Under construction \uD83D\uDEA7";
+        ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+        menuItems.add(new MenuItem("Add a book"));
+        menuItems.add(new MenuItem("Search book by title"));
+        menuItems.add(new MenuItem("Search book by category"));
+        menuItems.add(new MenuItem("Search book by Author"));
+        menuItems.add(new MenuItem("List all books along with author"));
+        menuItems.add(new MenuItem("Issue book to student"));
+        menuItems.add(new MenuItem("List books by usn"));
+        menuItems.add(new MenuItem("Exit"));
+
+        int EXIT = menuItems.size();
+        String underConstruction = "\uD83D\uDEA7 Under construction \uD83D\uDEA7";
         System.out.print(FigletFont.convertOneLine("BinaryBlaze Library"));
 
-        displayOptions(options, menuItems);
+        displayOptions(menuItems);
 
-        choice = validator.handleInteger("Enter an option: ", "Invalid input", 1, EXIT);
+        choice = validator.handleInteger("Enter an option: ", "⚠\uFE0F Invalid input ⚠\uFE0F", 1, EXIT);
 
         while (choice != EXIT) {
-            if (choice == options[0]) {
+            if (choice == 1) {
                 librarian.addABook();
-            } else if (choice == options[1]) {
+            } else if (choice == 2) {
                 librarian.searchBookByTitle();
-            } else if (choice == options[2]) {
+            } else if (choice == 3) {
                 System.out.println(underConstruction);
-            } else if (choice == options[3]) {
+            } else if (choice == 4) {
                 System.out.println(underConstruction);
-            } else if (choice == options[4]) {
+            } else if (choice == 5) {
                 System.out.println(underConstruction);
-            } else if (choice == options[5]) {
+            } else if (choice == 6) {
                 System.out.println(underConstruction);
-            } else if (choice == options[6]) {
+            } else if (choice == 7) {
                 System.out.println(underConstruction);
             }
 
-            displayOptions(options, menuItems);
+            displayOptions(menuItems);
 
-            choice = validator.handleInteger("Enter an option: ", "Invalid input", 1, EXIT);
+            choice = validator.handleInteger("Enter an option: ", "⚠\uFE0F Invalid input ⚠\uFE0F", 1, EXIT);
         }
 
         System.out.println("See you soon! \uD83D\uDC4B");

@@ -2,18 +2,19 @@
 package com.ironhack.ironlibrary.view;
 
 import com.github.lalyos.jfiglet.FigletFont;
+import com.ironhack.ironlibrary.utils.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Scanner;
 
 @Component
 public class Menu {
 
     @Autowired
     Librarian librarian;
+    @Autowired
+    Validator validator;
     private static Logger LOG = LoggerFactory
             .getLogger(Menu.class);
 
@@ -28,13 +29,12 @@ public class Menu {
            System.out.printf("%d. %s\n", options[i], items[i]);
        }
         System.out.println("==============");
-        System.out.print("Enter an option: ");
     }
 
     public void menuRun() {
         int choice;
 
-        int options[] = {1, 2, 3, 4, 5, 5, 7, 8};
+        int options[] = {1, 2, 3, 4, 5, 6, 7, 8};
         String menuItems[] = {"Add a book",
                 "Search book by title",
                 "Search book by category",
@@ -50,9 +50,7 @@ public class Menu {
 
         displayOptions(options, menuItems);
 
-        Scanner scanner = new Scanner(System.in);
-
-        choice = scanner.nextInt();
+        choice = validator.handleInteger("Enter an option: ", "Invalid input", 1, EXIT);
 
         while (choice != EXIT) {
             if (choice == options[0]) {
@@ -73,7 +71,7 @@ public class Menu {
 
             displayOptions(options, menuItems);
 
-            choice = scanner.nextInt();
+            choice = validator.handleInteger("Enter an option: ", "Invalid input", 1, EXIT);
         }
 
         System.out.println("See you soon! \uD83D\uDC4B");

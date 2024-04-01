@@ -1,6 +1,7 @@
 /* (C)2024 */
 package com.ironhack.ironlibrary.view;
 
+import com.github.lalyos.jfiglet.FigletFont;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,51 +20,62 @@ public class Menu {
     public Menu() {
     }
 
-    public void displayOptions() {
+    public void displayOptions(int options[], String items[]) {
         System.out.println("==============");
         System.out.println("M E N U");
         System.out.println("==============");
-        System.out.println("1. Add a book");
-        System.out.println("2. Search book by title");
-        System.out.println("3. Search book by category");
-        System.out.println("4. Search book by Author");
-        System.out.println("5. List all books along with author");
-        System.out.println("6. Issue book to student");
-        System.out.println("7. List books by usn");
-        System.out.println("8. Exit");
+       for (int i = 0; i < options.length; i++) {
+           System.out.printf("%d. %s\n", options[i], items[i]);
+       }
         System.out.println("==============");
         System.out.print("Enter an option: ");
     }
 
     public void menuRun() {
-        int option;
+        int choice;
 
-        displayOptions();
+        int options[] = {1, 2, 3, 4, 5, 5, 7, 8};
+        String menuItems[] = {"Add a book",
+                "Search book by title",
+                "Search book by category",
+                "Search book by Author",
+                "List all books along with author",
+                "Issue book to student",
+                "List books by usn",
+                "Exit"
+        };
+        int EXIT = options[options.length - 1];
+        String underConstruction = "Under construction \uD83D\uDEA7";
+        System.out.print(FigletFont.convertOneLine("BinaryBlaze Library"));
+
+        displayOptions(options, menuItems);
 
         Scanner scanner = new Scanner(System.in);
 
-        option = scanner.nextInt();
+        choice = scanner.nextInt();
 
-        while (option != 8) {
-            if (option == 1) {
+        while (choice != EXIT) {
+            if (choice == options[0]) {
                 librarian.addABook();
-            } else if (option == 2) {
+            } else if (choice == options[1]) {
                 librarian.searchBookByTitle();
-            } else if (option == 3) {
-                System.out.println("Under construction \uD83D\uDEA7");
-            } else if (option == 4) {
-                System.out.println("Under construction \uD83D\uDEA7");
-            } else if (option == 5) {
-                System.out.println("Under construction \uD83D\uDEA7");
-            } else if (option == 6) {
-                System.out.println("Under construction \uD83D\uDEA7");
-            } else if (option == 7) {
-                System.out.println("Under construction \uD83D\uDEA7");
+            } else if (choice == options[2]) {
+                System.out.println(underConstruction);
+            } else if (choice == options[3]) {
+                System.out.println(underConstruction);
+            } else if (choice == options[4]) {
+                System.out.println(underConstruction);
+            } else if (choice == options[5]) {
+                System.out.println(underConstruction);
+            } else if (choice == options[6]) {
+                System.out.println(underConstruction);
             }
 
-            displayOptions();
+            displayOptions(options, menuItems);
 
-            option = scanner.nextInt();
+            choice = scanner.nextInt();
         }
+
+        System.out.println("See you soon! \uD83D\uDC4B");
     }
 }

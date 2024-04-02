@@ -46,4 +46,16 @@ class BookRepositoryTest {
         assertEquals("Final Empire", bookOptional.get().getTitle());
     }
 
+    @Test
+    public void testKoFindBookByCategory() {
+        Optional<Book> bookOptional = bookRepository.findBookByCategory("Mystery");
+        assertFalse(bookOptional.isPresent());
+    }
+    @Test
+    public void testOkFindBookByCategory() {
+        Optional<Book> bookOptional = bookRepository.findBookByCategory("Fantasy");
+        assertTrue(bookOptional.isPresent());
+        assertEquals("Fantasy", bookOptional.get().getCategory());
+    }
+
 }

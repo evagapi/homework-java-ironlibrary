@@ -27,4 +27,11 @@ public class Issue {
     @OneToOne
     @JoinColumn(name = "issue_student")
     private Student issueStudent;
+
+    public Issue(String issueDate, String returnDate, Book issueBook, Student issueStudent) {
+        this.issueDate = issueDate;
+        this.returnDate = returnDate;
+        this.issueBook = issueBook;
+        this.issueStudent = issueStudent;
+    }
 }

@@ -5,10 +5,13 @@ import com.ironhack.ironlibrary.model.Author;
 import com.ironhack.ironlibrary.model.Book;
 import com.ironhack.ironlibrary.repository.AuthorRepository;
 import com.ironhack.ironlibrary.repository.BookRepository;
+import com.ironhack.ironlibrary.service.AuthorService;
 import com.ironhack.ironlibrary.service.BookService;
+import com.ironhack.ironlibrary.utils.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -21,6 +24,8 @@ public class Librarian {
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private AuthorService authorService;
 
     public void searchBookByTitle() {
         System.out.println("Enter a book title");
@@ -52,4 +57,8 @@ public class Librarian {
         authorRepository.save(author);
     }
 
+    public void getAllBooksAndAuthor() {
+        List<Author> authors = authorService.getAllAuthors();
+            Table.printBooksWithAuthor(authors);
+    }
 }

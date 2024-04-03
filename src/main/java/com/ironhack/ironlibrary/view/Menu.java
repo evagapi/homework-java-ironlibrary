@@ -65,7 +65,7 @@ public class Menu {
             } else if (choice == 4) {
                 System.out.println(underConstruction);
             } else if (choice == 5) {
-                System.out.println(underConstruction);
+                librarian.getAllBooksAndAuthor();
             } else if (choice == 6) {
                 System.out.println(underConstruction);
             } else if (choice == 7) {

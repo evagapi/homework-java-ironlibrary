@@ -2,7 +2,6 @@
 package com.ironhack.ironlibrary.service;
 
 import com.ironhack.ironlibrary.model.Author;
-import com.ironhack.ironlibrary.model.Book;
 import com.ironhack.ironlibrary.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

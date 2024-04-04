@@ -42,7 +42,12 @@
 			<version>2.2.222</version>
 			<scope>runtime</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.github.lalyos</groupId>
+            <artifactId>jfiglet</artifactId>
+            <version>0.0.3</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

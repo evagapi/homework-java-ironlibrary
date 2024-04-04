@@ -11,6 +11,7 @@ import com.ironhack.ironlibrary.utils.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -32,7 +33,13 @@ public class Librarian {
         Scanner scanner = new Scanner(System.in);
         String bookTitle = scanner.nextLine();
         Optional<Book> bookOptional = bookService.searchBookByTitle(bookTitle);
-        System.out.println(bookOptional.isPresent());
+        if(bookOptional.isPresent()) {
+            List<Book> books = new ArrayList<>();
+            books.add(bookOptional.get());
+            Table.printBooks(books);
+        } else {
+            System.out.println("Book not found");
+        }
     }
 
     public void searchBookByCategory() {
@@ -41,7 +48,9 @@ public class Librarian {
         String category = scanner.nextLine();
         Optional<Book> bookOptional = bookService.searchBookByCategory(category);
         if(bookOptional.isPresent()) {
-            System.out.println("Book found: " + bookOptional.get().getTitle());
+            List<Book> books = new ArrayList<>();
+            books.add(bookOptional.get());
+            Table.printBooks(books);
         } else {
             System.out.println("Book not found");
         }
@@ -78,8 +87,10 @@ public class Librarian {
         Scanner scanner = new Scanner(System.in);
         String authorName = scanner.nextLine();
         Optional<Author> authorOptional = authorService.searchBookByAuthor(authorName);
-        if (authorOptional.isPresent()) {
-            System.out.println("Book found: " + authorOptional.get().getAuthorBook().getTitle());
+        if(authorOptional.isPresent() && authorOptional.get().getAuthorBook() != null) {
+            List<Book> books = new ArrayList<>();
+            books.add(authorOptional.get().getAuthorBook());
+            Table.printBooks(books);
         } else {
             System.out.println("Book not found");
         }

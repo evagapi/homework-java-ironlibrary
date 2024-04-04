@@ -61,9 +61,9 @@ public class Menu {
             } else if (choice == 2) {
                 librarian.searchBookByTitle();
             } else if (choice == 3) {
-                System.out.println(underConstruction);
+                librarian.searchBookByCategory();
             } else if (choice == 4) {
-                System.out.println(underConstruction);
+                librarian.searchBookByAuthor();
             } else if (choice == 5) {
                 librarian.getAllBooksAndAuthor();
             } else if (choice == 6) {

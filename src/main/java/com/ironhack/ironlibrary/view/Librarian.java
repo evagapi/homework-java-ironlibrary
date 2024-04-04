@@ -31,7 +31,6 @@ public class Librarian {
         System.out.println("Enter a book title");
         Scanner scanner = new Scanner(System.in);
         String bookTitle = scanner.nextLine();
-        scanner.close();
         Optional<Book> bookOptional = bookService.searchBookByTitle(bookTitle);
         System.out.println(bookOptional.isPresent());
     }
@@ -40,7 +39,6 @@ public class Librarian {
         System.out.println("Enter a category");
         Scanner scanner = new Scanner(System.in);
         String category = scanner.nextLine();
-        scanner.close();
         Optional<Book> bookOptional = bookService.searchBookByCategory(category);
         if(bookOptional.isPresent()) {
             System.out.println("Book found: " + bookOptional.get().getTitle());
@@ -79,7 +77,6 @@ public class Librarian {
         System.out.println("Enter an author name");
         Scanner scanner = new Scanner(System.in);
         String authorName = scanner.nextLine();
-        scanner.close();
         Optional<Author> authorOptional = authorService.searchBookByAuthor(authorName);
         if (authorOptional.isPresent()) {
             System.out.println("Book found: " + authorOptional.get().getAuthorBook().getTitle());

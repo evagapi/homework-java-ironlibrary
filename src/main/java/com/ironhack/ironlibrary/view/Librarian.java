@@ -74,4 +74,17 @@ public class Librarian {
         List<Author> authors = authorService.getAllAuthors();
             Table.printBooksWithAuthor(authors);
     }
+
+    public void searchBookByAuthor() {
+        System.out.println("Enter an author name");
+        Scanner scanner = new Scanner(System.in);
+        String authorName = scanner.nextLine();
+        scanner.close();
+        Optional<Author> authorOptional = authorService.searchBookByAuthor(authorName);
+        if (authorOptional.isPresent()) {
+            System.out.println("Book found: " + authorOptional.get().getAuthorBook().getTitle());
+        } else {
+            System.out.println("Book not found");
+        }
+    }
 }

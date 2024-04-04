@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,5 +44,17 @@ class AuthorRepositoryTest {
         assertEquals(1, authors.size());
         assertEquals(authors.getFirst(), author);
         assertEquals(authors.getFirst().getAuthorBook(), book);
+    }
+
+    @Test
+    public void testKoFindBookByAuthorName() {
+        Optional<Author> authorOptional = authorRepository.findAuthorByName("William");
+        assertFalse(authorOptional.isPresent());
+    }
+    @Test
+    public void testOkFindBookByAuthorName() {
+        Optional<Author> authorOptional = authorRepository.findAuthorByName("Henry");
+        assertTrue(authorOptional.isPresent());
+        assertEquals("ABC159753", authorOptional.get().getAuthorBook().getIsbn());
     }
 }

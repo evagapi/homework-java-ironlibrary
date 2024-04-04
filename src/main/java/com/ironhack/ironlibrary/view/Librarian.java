@@ -36,6 +36,19 @@ public class Librarian {
         System.out.println(bookOptional.isPresent());
     }
 
+    public void searchBookByCategory() {
+        System.out.println("Enter a category");
+        Scanner scanner = new Scanner(System.in);
+        String category = scanner.nextLine();
+        scanner.close();
+        Optional<Book> bookOptional = bookService.searchBookByCategory(category);
+        if(bookOptional.isPresent()) {
+            System.out.println("Book found: " + bookOptional.get().getTitle());
+        } else {
+            System.out.println("Book not found");
+        }
+    }
+
     public void addABook() {
         System.out.print("Enter isbn : ");
         Scanner scanner = new Scanner(System.in);

@@ -2,8 +2,6 @@ package com.ironhack.ironlibrary.utils;
 
 import org.springframework.stereotype.Component;
 
-import java.util.Scanner;
-
 @Component
 public class Validator {
 
@@ -12,11 +10,9 @@ public class Validator {
         String stringInput;
         boolean valid = false;
 
-        Scanner scanner = new Scanner(System.in);
-
         while (!valid) {
             System.out.println(promptMessage);
-            stringInput = scanner.nextLine();
+            stringInput = InputReader.nextLine();
             try {
                 number = Integer.parseInt(stringInput);
                 if (number >= lowest && number <= highest) {
@@ -28,7 +24,6 @@ public class Validator {
                 System.out.println(errorMessage);
             }
         }
-
         return number;
     }
 }

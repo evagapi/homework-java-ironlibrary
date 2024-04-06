@@ -7,6 +7,7 @@ import com.ironhack.ironlibrary.repository.AuthorRepository;
 import com.ironhack.ironlibrary.repository.BookRepository;
 import com.ironhack.ironlibrary.service.AuthorService;
 import com.ironhack.ironlibrary.service.BookService;
+import com.ironhack.ironlibrary.utils.InputReader;
 import com.ironhack.ironlibrary.utils.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,8 +32,7 @@ public class Librarian {
 
     public void searchBookByTitle() {
         System.out.println("Enter a book title");
-        Scanner scanner = new Scanner(System.in);
-        String bookTitle = scanner.nextLine();
+        String bookTitle = InputReader.nextLine();
         Optional<Book> bookOptional = bookService.searchBookByTitle(bookTitle);
         if(bookOptional.isPresent()) {
             List<Book> books = new ArrayList<>();
@@ -45,8 +45,7 @@ public class Librarian {
 
     public void searchBookByCategory() {
         System.out.println("Enter a category");
-        Scanner scanner = new Scanner(System.in);
-        String category = scanner.nextLine();
+        String category = InputReader.nextLine();
         Optional<Book> bookOptional = bookService.searchBookByCategory(category);
         if(bookOptional.isPresent()) {
             List<Book> books = new ArrayList<>();
@@ -59,19 +58,18 @@ public class Librarian {
 
     public void addABook() {
         System.out.print("Enter isbn : ");
-        Scanner scanner = new Scanner(System.in);
-        String isbnTest = scanner.nextLine();
+        String isbnTest = InputReader.nextLine();
         String isbn = checkIsbn(isbnTest);
         System.out.print("Enter title : ");
-        String title = scanner.nextLine();
+        String title = InputReader.nextLine();
         System.out.print("Enter category : ");
-        String category = scanner.nextLine();
+        String category = InputReader.nextLine();
         System.out.print("Enter Author name : ");
-        String name = scanner.nextLine();
+        String name = InputReader.nextLine();
         System.out.print("Enter Author mail : ");
-        String email = scanner.nextLine();
+        String email = InputReader.nextLine();
         System.out.print("Enter number of books : ");
-        int quantity = Integer.parseInt(scanner.nextLine());
+        int quantity = Integer.parseInt(InputReader.nextLine());
 
         Book book = new Book(title, isbn, category, quantity);
         bookRepository.save(book);
@@ -86,10 +84,9 @@ public class Librarian {
 
     public void searchBookByAuthor() {
         System.out.println("Enter an author name");
-        Scanner scanner = new Scanner(System.in);
-        String authorName = scanner.nextLine();
+        String authorName = InputReader.nextLine();
         Optional<Author> authorOptional = authorService.searchBookByAuthor(authorName);
-        if(authorOptional.isPresent() && authorOptional.get().getAuthorBook() != null) {
+        if (authorOptional.isPresent() && authorOptional.get().getAuthorBook() != null) {
             List<Book> books = new ArrayList<>();
             books.add(authorOptional.get().getAuthorBook());
             Table.printBooks(books);
@@ -105,8 +102,7 @@ public class Librarian {
         for(Author author: authors){
             if (Objects.equals(author.getAuthorBook().getIsbn(), isbnTest)) {
                 System.out.print("This ISBN already exists, type another one : ");
-                Scanner scanner2 = new Scanner(System.in);
-                isbnTest = scanner2.nextLine();
+                isbnTest = InputReader.nextLine();
                 checkIsbn(isbnTest);
             }
         }

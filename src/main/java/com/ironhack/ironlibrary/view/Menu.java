@@ -2,6 +2,7 @@
 package com.ironhack.ironlibrary.view;
 
 import com.github.lalyos.jfiglet.FigletFont;
+import com.ironhack.ironlibrary.utils.InputReader;
 import com.ironhack.ironlibrary.utils.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,5 +79,6 @@ public class Menu {
         }
 
         System.out.println("See you soon! \uD83D\uDC4B");
+        InputReader.closeScanner();
     }
 }

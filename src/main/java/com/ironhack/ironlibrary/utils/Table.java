@@ -14,7 +14,7 @@ public class Table {
         for (Book book : books) {
             System.out.printf("%-30s %-45s %-15s %-15s\n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity());
         }
-        System.out.println();
+        System.out.printf("\n");
     }
 
     public static void printBooksWithAuthor(List<Author> authors) {
@@ -24,7 +24,7 @@ public class Table {
             Book book = author.getAuthorBook();
             System.out.printf("%-30s %-45s %-15s %-15s %-15s\n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity(), author.getName());
         }
-        System.out.println();
+        System.out.printf("\n");
     }
 
     public static void printIssues(List<Issue> issues) {
@@ -33,6 +33,6 @@ public class Table {
         for (Issue issue : issues) {
             System.out.printf("%-45s %-15s %-15s\n", issue.getIssueBook().getTitle(), issue.getIssueStudent().getName(), issue.getReturnDate());
         }
-        System.out.println();
+        System.out.printf("\n");
     }
 }

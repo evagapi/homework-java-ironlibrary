@@ -37,8 +37,8 @@ class TableTest {
     void printBooksTest() {
         List<Book> books = List.of(book);
         Table.printBooks(books);
-        assertEquals("Book ISBN       Book Title                                    Category        No of Books    \n" +
-                        "ABC159753       Harry Potter and Philosopher Stone            Young adult     10             \n",
+        assertEquals("Book ISBN                      Book Title                                    Category        No of Books    \n" +
+                        "ABC159753                      Harry Potter and Philosopher Stone            Young adult     10             \n\n",
                 outputStream.toString());
     }
 
@@ -46,8 +46,8 @@ class TableTest {
     void printBooksWithAuthorTest() {
         List<Author> authors = List.of(author);
         Table.printBooksWithAuthor(authors);
-        assertEquals("Book ISBN       Book Title                                    Category        No of Books     Author name    \n" +
-                        "ABC159753       Harry Potter and Philosopher Stone            Young adult     10              Henry          \n",
+        assertEquals("Book ISBN                      Book Title                                    Category        No of Books     Author name    \n" +
+                        "ABC159753                      Harry Potter and Philosopher Stone            Young adult     10              Henry          \n\n",
                 outputStream.toString());
     }
 
@@ -56,7 +56,7 @@ class TableTest {
         List<Issue> issues = List.of(issue);
         Table.printIssues(issues);
         assertEquals("Book Title                                    Student Name    Return Date    \n" +
-                        "Harry Potter and Philosopher Stone            Ana             25-03-2024     \n",
+                        "Harry Potter and Philosopher Stone            Ana             25-03-2024     \n\n",
                 outputStream.toString());
     }
 
@@ -65,7 +65,7 @@ class TableTest {
         List<Issue> issues = List.of(issue);
         Table.printIssues(issues);
         assertEquals("Book Title                                    Student Name    Return Date    \n" +
-                        "Harry Potter and Philosopher Stone            Ana             25-03-2024     \n",
+                        "Harry Potter and Philosopher Stone            Ana             25-03-2024     \n\n",
                 outputStream.toString());
     }
 }

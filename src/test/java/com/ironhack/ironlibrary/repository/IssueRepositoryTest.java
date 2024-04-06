@@ -48,6 +48,7 @@ class IssueRepositoryTest {
     @Test
     public void testIssueBookToStudent() {
         Optional<Issue> issue = issueRepository.findById(1);
+        System.out.println(issue.get().toString());
         assertTrue(issue.isPresent());
         assertEquals("Pau", issue.get().getIssueStudent().getName());
     }

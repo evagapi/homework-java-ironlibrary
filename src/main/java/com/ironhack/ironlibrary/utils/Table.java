@@ -9,20 +9,22 @@ import java.util.List;
 
 public class Table {
     public static void printBooks(List<Book> books) {
-        System.out.printf("%-15s %-45s %-15s %-15s\n", "Book ISBN", "Book Title", "Category", "No of Books");
+        System.out.printf("%-30s %-45s %-15s %-15s\n", "Book ISBN", "Book Title", "Category", "No of Books");
 
         for (Book book : books) {
-            System.out.printf("%-15s %-45s %-15s %-15s\n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity());
+            System.out.printf("%-30s %-45s %-15s %-15s\n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity());
         }
+        System.out.printf("\n");
     }
 
     public static void printBooksWithAuthor(List<Author> authors) {
-        System.out.printf("%-15s %-45s %-15s %-15s %-15s\n", "Book ISBN", "Book Title", "Category", "No of Books", "Author name");
+        System.out.printf("%-30s %-45s %-15s %-15s %-15s\n", "Book ISBN", "Book Title", "Category", "No of Books", "Author name");
 
         for (Author author : authors) {
             Book book = author.getAuthorBook();
-            System.out.printf("%-15s %-45s %-15s %-15s %-15s\n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity(), author.getName());
+            System.out.printf("%-30s %-45s %-15s %-15s %-15s\n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity(), author.getName());
         }
+        System.out.printf("\n");
     }
 
     public static void printIssues(List<Issue> issues) {
@@ -31,5 +33,6 @@ public class Table {
         for (Issue issue : issues) {
             System.out.printf("%-45s %-15s %-15s\n", issue.getIssueBook().getTitle(), issue.getIssueStudent().getName(), issue.getReturnDate());
         }
+        System.out.printf("\n");
     }
 }

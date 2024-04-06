@@ -53,8 +53,7 @@ class TableTest {
 
     @Test
     void printIssuesTest() {
-        List<Issue> issues = List.of(issue);
-        Table.printIssues(issues);
+        Table.printIssue(issue);
         assertEquals("Book Title                                    Student Name    Return Date    \n" +
                         "Harry Potter and Philosopher Stone            Ana             25-03-2024     \n\n",
                 outputStream.toString());
@@ -62,8 +61,7 @@ class TableTest {
 
     @Test
     void printTest() {
-        List<Issue> issues = List.of(issue);
-        Table.printIssues(issues);
+        Table.printIssue(issue);
         assertEquals("Book Title                                    Student Name    Return Date    \n" +
                         "Harry Potter and Philosopher Stone            Ana             25-03-2024     \n\n",
                 outputStream.toString());

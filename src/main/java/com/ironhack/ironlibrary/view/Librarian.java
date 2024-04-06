@@ -3,11 +3,15 @@ package com.ironhack.ironlibrary.view;
 
 import com.ironhack.ironlibrary.model.Author;
 import com.ironhack.ironlibrary.model.Book;
+import com.ironhack.ironlibrary.model.Issue;
+import com.ironhack.ironlibrary.model.Student;
 import com.ironhack.ironlibrary.repository.AuthorRepository;
 import com.ironhack.ironlibrary.repository.BookRepository;
 import com.ironhack.ironlibrary.service.AuthorService;
 import com.ironhack.ironlibrary.service.BookService;
 import com.ironhack.ironlibrary.utils.InputReader;
+import com.ironhack.ironlibrary.service.IssueService;
+import com.ironhack.ironlibrary.service.StudentService;
 import com.ironhack.ironlibrary.utils.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,6 +32,12 @@ public class Librarian {
     private AuthorRepository authorRepository;
     @Autowired
     private AuthorService authorService;
+
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private IssueService issueService;
 
     public void searchBookByTitle() {
         System.out.println("Enter a book title");
@@ -94,18 +104,79 @@ public class Librarian {
         }
     }
 
-    public String checkIsbn(String isbnTest) {
+    public void issueBookToStudent() {
+        System.out.println("Enter issue date : ");
+        String issueDate = InputReader.getInstance().nextLine();
+        System.out.println("Enter return date : ");
+        String returnDate = InputReader.getInstance().nextLine();
+        System.out.println("Enter book title : ");
+        String bookTitle = InputReader.getInstance().nextLine();
+        Book book = searchBookByTitleHelper(bookTitle);
+        System.out.println("Enter student usn : ");
+        String usn = InputReader.getInstance().nextLine();
+        Student student = searchStudentByUsn(usn);
+        Issue issue = new Issue(
+                issueDate,
+                returnDate,
+                book,
+                student
+        );
+        issueService.saveIssue(issue);
+        System.out.println("Book issued. Return date : " + returnDate);
+    }
 
+    public void listBooksByUsn() {
+        System.out.println("Enter usn : ");
+        String usn = InputReader.getInstance().nextLine();
+        Optional<Student> studentOptional = studentService.findStudentByUsn(usn);
+        if(studentOptional.isPresent()) {
+            Optional<Issue> issueOptional = issueService.findIssueByStudent(studentOptional.get());
+            if(issueOptional.isPresent()) {
+                Table.printIssue(issueOptional.get());
+            } else {
+                System.out.println("This usn doesn't have a book issued.");
+            }
+        } else {
+            System.out.println("This usn doesn't exists.");
+        }
+    }
+
+    public String checkIsbn(String isbnTest) {
         List<Author> authors = authorService.getAllAuthors();
 
-        for(Author author: authors){
+        for (Author author : authors) {
             if (Objects.equals(author.getAuthorBook().getIsbn(), isbnTest)) {
                 System.out.print("This ISBN already exists, type another one : ");
+                isbnTest = InputReader.getInstance().nextLine();
                 isbnTest = InputReader.getInstance().nextLine();
                 checkIsbn(isbnTest);
             }
         }
 
         return isbnTest;
+    }
+
+    public Book searchBookByTitleHelper(String title) {
+        Optional<Book> bookOptional = bookService.searchBookByTitle(title);
+
+        if(bookOptional.isEmpty()) {
+            System.out.println("Book not found, type another book : ");
+            title = InputReader.getInstance().nextLine();
+            searchBookByTitleHelper(title);
+        }
+
+        return bookOptional.get();
+    }
+
+    public Student searchStudentByUsn(String usn) {
+        Optional<Student> studentOptional = studentService.findStudentByUsn(usn);
+
+        if(studentOptional.isEmpty()) {
+            System.out.println("Student not found, type another student usn : ");
+            usn = InputReader.getInstance().nextLine();
+            searchStudentByUsn(usn);
+        }
+
+        return studentOptional.get();
     }
 }

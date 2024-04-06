@@ -106,15 +106,14 @@ public class Librarian {
 
     public void issueBookToStudent() {
         System.out.println("Enter issue date : ");
-        Scanner scanner = new Scanner(System.in);
-        String issueDate = scanner.nextLine();
+        String issueDate = InputReader.getInstance().nextLine();
         System.out.println("Enter return date : ");
-        String returnDate = scanner.nextLine();
+        String returnDate = InputReader.getInstance().nextLine();
         System.out.println("Enter book title : ");
-        String bookTitle = scanner.nextLine();
+        String bookTitle = InputReader.getInstance().nextLine();
         Book book = searchBookByTitleHelper(bookTitle);
         System.out.println("Enter student usn : ");
-        String usn = scanner.nextLine();
+        String usn = InputReader.getInstance().nextLine();
         Student student = searchStudentByUsn(usn);
         Issue issue = new Issue(
                 issueDate,
@@ -128,13 +127,12 @@ public class Librarian {
 
     public void listBooksByUsn() {
         System.out.println("Enter usn : ");
-        Scanner scanner = new Scanner(System.in);
-        String usn = scanner.nextLine();
+        String usn = InputReader.getInstance().nextLine();
         Optional<Student> studentOptional = studentService.findStudentByUsn(usn);
         if(studentOptional.isPresent()) {
             Optional<Issue> issueOptional = issueService.findIssueByStudent(studentOptional.get());
             if(issueOptional.isPresent()) {
-                Table.printIssues(issueOptional.get());
+                Table.printIssue(issueOptional.get());
             } else {
                 System.out.println("This usn doesn't have a book issued.");
             }
@@ -150,9 +148,7 @@ public class Librarian {
             if (Objects.equals(author.getAuthorBook().getIsbn(), isbnTest)) {
                 System.out.print("This ISBN already exists, type another one : ");
                 isbnTest = InputReader.getInstance().nextLine();
-                Scanner scanner2 = new Scanner(System.in);
-                isbnTest = scanner2.nextLine();
-                scanner2.reset();
+                isbnTest = InputReader.getInstance().nextLine();
                 checkIsbn(isbnTest);
             }
         }
@@ -165,8 +161,7 @@ public class Librarian {
 
         if(bookOptional.isEmpty()) {
             System.out.println("Book not found, type another book : ");
-            Scanner scanner = new Scanner(System.in);
-            title = scanner.nextLine();
+            title = InputReader.getInstance().nextLine();
             searchBookByTitleHelper(title);
         }
 
@@ -178,8 +173,7 @@ public class Librarian {
 
         if(studentOptional.isEmpty()) {
             System.out.println("Student not found, type another student usn : ");
-            Scanner scanner = new Scanner(System.in);
-            usn = scanner.nextLine();
+            usn = InputReader.getInstance().nextLine();
             searchStudentByUsn(usn);
         }
 

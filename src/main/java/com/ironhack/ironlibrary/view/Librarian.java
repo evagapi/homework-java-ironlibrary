@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -50,7 +51,8 @@ public class Librarian {
     public void addABook() {
         System.out.print("Enter isbn : ");
         Scanner scanner = new Scanner(System.in);
-        String isbn = scanner.nextLine();
+        String isbnTest = scanner.nextLine();
+        String isbn = checkIsbn(isbnTest);
         System.out.print("Enter title : ");
         String title = scanner.nextLine();
         System.out.print("Enter category : ");
@@ -83,5 +85,21 @@ public class Librarian {
         } else {
             System.out.println("Book not found");
         }
+    }
+
+    public String checkIsbn(String isbnTest) {
+
+        List<Author> authors = authorService.getAllAuthors();
+
+        for(Author author: authors){
+            if (Objects.equals(author.getAuthorBook().getIsbn(), isbnTest)) {
+                System.out.print("This ISBN already exists, type another one : ");
+                Scanner scanner2 = new Scanner(System.in);
+                isbnTest = scanner2.nextLine();
+                checkIsbn(isbnTest);
+            }
+        }
+
+        return isbnTest;
     }
 }

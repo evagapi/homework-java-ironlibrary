@@ -8,10 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.env.Environment;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 public class IronlibraryApplication implements CommandLineRunner {
 
+    @Autowired
+    private Environment environment;
     @Autowired
     Menu menu;
 
@@ -26,6 +31,9 @@ public class IronlibraryApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         LOG.info("EXECUTING : command line runner");
-        //menu.menuRun();
+        if (!Arrays.asList(environment.getActiveProfiles()).contains("test")){
+            menu.menuRun();
+        }
+
     }
 }

@@ -22,6 +22,8 @@ class IssueRepositoryTest {
     @Autowired
     private StudentRepository studentRepository;
 
+    Issue issue;
+
 
     @BeforeEach
     void setUp() {
@@ -29,11 +31,11 @@ class IssueRepositoryTest {
         bookRepository.save(book);
         Student student = new Student("456ASD","Pau");
         studentRepository.save(student);
-        Issue issue = new Issue(
+        issue = new Issue(
                 "04-04-2024",
                 "04-04-2024",
-                bookRepository.findById(1).get(),
-                studentRepository.findById(1).get()
+                book,
+                student
         );
         issueRepository.save(issue);
     }
@@ -47,9 +49,8 @@ class IssueRepositoryTest {
 
     @Test
     public void testIssueBookToStudent() {
-        Optional<Issue> issue = issueRepository.findById(1);
-        System.out.println(issue.get().toString());
-        assertTrue(issue.isPresent());
-        assertEquals("Pau", issue.get().getIssueStudent().getName());
+        Optional<Issue> issueOptional = issueRepository.findById(issue.getId());
+        assertTrue(issueOptional.isPresent());
+        assertEquals("Pau", issueOptional.get().getIssueStudent().getName());
     }
 }

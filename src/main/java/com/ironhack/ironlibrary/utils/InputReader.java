@@ -5,14 +5,29 @@ import java.util.Scanner;
 
 public class InputReader {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private static InputReader instance;
+    private final Scanner scanner;
 
-    public static String nextLine() {
+    private InputReader() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public static InputReader getInstance() {
+        if (instance == null) {
+            instance = new InputReader();
+        }
+        return instance;
+    }
+
+    public String nextLine() {
 
         return scanner.nextLine();
     }
 
-    public static void closeScanner() {
-        scanner.close();
+    public void closeScanner() {
+        if (instance != null) {
+            scanner.close();
+            instance = null;
+        }
     }
 }

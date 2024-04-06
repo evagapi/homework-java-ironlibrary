@@ -12,7 +12,7 @@ public class Validator {
 
         while (!valid) {
             System.out.println(promptMessage);
-            stringInput = InputReader.nextLine();
+            stringInput = InputReader.getInstance().nextLine();
             try {
                 number = Integer.parseInt(stringInput);
                 if (number >= lowest && number <= highest) {

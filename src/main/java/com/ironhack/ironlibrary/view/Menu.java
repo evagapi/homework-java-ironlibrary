@@ -79,6 +79,6 @@ public class Menu {
         }
 
         System.out.println("See you soon! \uD83D\uDC4B");
-        InputReader.closeScanner();
+        InputReader.getInstance().closeScanner();
     }
 }

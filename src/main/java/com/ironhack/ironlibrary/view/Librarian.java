@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Scanner;
 
 @Component
 public class Librarian {
@@ -32,7 +31,7 @@ public class Librarian {
 
     public void searchBookByTitle() {
         System.out.println("Enter a book title");
-        String bookTitle = InputReader.nextLine();
+        String bookTitle = InputReader.getInstance().nextLine();
         Optional<Book> bookOptional = bookService.searchBookByTitle(bookTitle);
         if(bookOptional.isPresent()) {
             List<Book> books = new ArrayList<>();
@@ -45,7 +44,7 @@ public class Librarian {
 
     public void searchBookByCategory() {
         System.out.println("Enter a category");
-        String category = InputReader.nextLine();
+        String category = InputReader.getInstance().nextLine();
         Optional<Book> bookOptional = bookService.searchBookByCategory(category);
         if(bookOptional.isPresent()) {
             List<Book> books = new ArrayList<>();
@@ -58,18 +57,18 @@ public class Librarian {
 
     public void addABook() {
         System.out.print("Enter isbn : ");
-        String isbnTest = InputReader.nextLine();
+        String isbnTest = InputReader.getInstance().nextLine();
         String isbn = checkIsbn(isbnTest);
         System.out.print("Enter title : ");
-        String title = InputReader.nextLine();
+        String title = InputReader.getInstance().nextLine();
         System.out.print("Enter category : ");
-        String category = InputReader.nextLine();
+        String category = InputReader.getInstance().nextLine();
         System.out.print("Enter Author name : ");
-        String name = InputReader.nextLine();
+        String name = InputReader.getInstance().nextLine();
         System.out.print("Enter Author mail : ");
-        String email = InputReader.nextLine();
+        String email = InputReader.getInstance().nextLine();
         System.out.print("Enter number of books : ");
-        int quantity = Integer.parseInt(InputReader.nextLine());
+        int quantity = Integer.parseInt(InputReader.getInstance().nextLine());
 
         Book book = new Book(title, isbn, category, quantity);
         bookRepository.save(book);
@@ -84,7 +83,7 @@ public class Librarian {
 
     public void searchBookByAuthor() {
         System.out.println("Enter an author name");
-        String authorName = InputReader.nextLine();
+        String authorName = InputReader.getInstance().nextLine();
         Optional<Author> authorOptional = authorService.searchBookByAuthor(authorName);
         if (authorOptional.isPresent() && authorOptional.get().getAuthorBook() != null) {
             List<Book> books = new ArrayList<>();
@@ -102,7 +101,7 @@ public class Librarian {
         for(Author author: authors){
             if (Objects.equals(author.getAuthorBook().getIsbn(), isbnTest)) {
                 System.out.print("This ISBN already exists, type another one : ");
-                isbnTest = InputReader.nextLine();
+                isbnTest = InputReader.getInstance().nextLine();
                 checkIsbn(isbnTest);
             }
         }

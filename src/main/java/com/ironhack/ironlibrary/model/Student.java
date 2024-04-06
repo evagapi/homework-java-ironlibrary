@@ -19,4 +19,9 @@ public class Student {
 
     private String usn;
     private String name;
+
+    public Student(String usn, String name) {
+        this.usn = usn;
+        this.name = name;
+    }
 }

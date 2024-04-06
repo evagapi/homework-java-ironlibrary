@@ -69,7 +69,7 @@ public class Menu {
             } else if (choice == 6) {
                 librarian.issueBookToStudent();
             } else if (choice == 7) {
-                System.out.println(underConstruction);
+                librarian.listBooksByUsn();
             }
 
             displayOptions(menuItems);

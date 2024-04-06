@@ -27,12 +27,9 @@ public class Table {
         System.out.printf("\n");
     }
 
-    public static void printIssues(List<Issue> issues) {
+    public static void printIssues(Issue issue) {
         System.out.printf("%-45s %-15s %-15s\n", "Book Title", "Student Name", "Return Date");
-
-        for (Issue issue : issues) {
-            System.out.printf("%-45s %-15s %-15s\n", issue.getIssueBook().getTitle(), issue.getIssueStudent().getName(), issue.getReturnDate());
-        }
+        System.out.printf("%-45s %-15s %-15s\n", issue.getIssueBook().getTitle(), issue.getIssueStudent().getName(), issue.getReturnDate());
         System.out.printf("\n");
     }
 }

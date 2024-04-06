@@ -131,8 +131,20 @@ public class Librarian {
     }
 
     public void listBooksByUsn() {
-        List<Issue> issues = issueService.getAllIssues();
-        Table.printIssues(issues);
+        System.out.println("Enter usn : ");
+        Scanner scanner = new Scanner(System.in);
+        String usn = scanner.nextLine();
+        Optional<Student> studentOptional = studentService.findStudentByUsn(usn);
+        if(studentOptional.isPresent()) {
+            Optional<Issue> issueOptional = issueService.findIssueByStudent(studentOptional.get());
+            if(issueOptional.isPresent()) {
+                Table.printIssues(issueOptional.get());
+            } else {
+                System.out.println("This usn doesn't have a book issued.");
+            }
+        } else {
+            System.out.println("This usn doesn't exists.");
+        }
     }
 
     public String checkIsbn(String isbnTest) {

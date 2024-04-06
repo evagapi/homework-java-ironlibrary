@@ -1,13 +1,13 @@
 /* (C)2024 */
 package com.ironhack.ironlibrary.service;
 
-import com.ironhack.ironlibrary.model.Author;
 import com.ironhack.ironlibrary.model.Issue;
+import com.ironhack.ironlibrary.model.Student;
 import com.ironhack.ironlibrary.repository.IssueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IssueService {
@@ -21,7 +21,7 @@ public class IssueService {
         return issueRepository.save(issue);
     }
 
-    public List<Issue> getAllIssues() {
-        return issueRepository.findAll();
+    public Optional<Issue> findIssueByStudent(Student student) {
+        return issueRepository.findIssueByIssueStudent(student);
     }
 }

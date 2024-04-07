@@ -11,7 +11,7 @@ public class Validator {
         boolean valid = false;
 
         while (!valid) {
-            System.out.println(promptMessage);
+            System.out.print(promptMessage);
             stringInput = InputReader.getInstance().nextLine();
             try {
                 number = Integer.parseInt(stringInput);

@@ -13,6 +13,7 @@ import com.ironhack.ironlibrary.utils.InputReader;
 import com.ironhack.ironlibrary.service.IssueService;
 import com.ironhack.ironlibrary.service.StudentService;
 import com.ironhack.ironlibrary.utils.Table;
+import com.ironhack.ironlibrary.utils.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,9 @@ public class Librarian {
 
     @Autowired
     private IssueService issueService;
+
+    @Autowired
+    Validator validator;
 
     public void searchBookByTitle() {
         System.out.println("Enter a book title");
@@ -77,8 +81,7 @@ public class Librarian {
         String name = InputReader.getInstance().nextLine();
         System.out.print("Enter Author mail : ");
         String email = InputReader.getInstance().nextLine();
-        System.out.print("Enter number of books : ");
-        int quantity = Integer.parseInt(InputReader.getInstance().nextLine());
+        int quantity = validator.handleInteger("Enter number of books : ", "⚠\uFE0F Number of books must be between 0 and 100 ⚠\uFE0F", 0, 100);
 
         Book book = new Book(title, isbn, category, quantity);
         bookRepository.save(book);
